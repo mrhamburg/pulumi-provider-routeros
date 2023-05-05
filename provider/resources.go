@@ -17,6 +17,7 @@ package routeros
 import (
 	"fmt"
 	"path/filepath"
+	"unicode"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
@@ -24,6 +25,7 @@ import (
 	"github.com/mrhamburg/pulumi-provider-routeros/provider/pkg/version"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/terraform-routeros/terraform-provider-routeros/routeros"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 )
 
 // all of the token components used below.
@@ -119,7 +121,7 @@ func Provider() tfbridge.ProviderInfo {
 		Repository: "https://github.com/mrhamburg/pulumi-provider-routeros",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
-		GitHubOrg: "",
+		GitHubOrg: "terraform-routeros",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"hosturl": {
 				Default: &tfbridge.DefaultInfo{
@@ -224,7 +226,7 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"routeros_ipv6_addresses": {
 				Tok: routerOsDataSource(rosIpv6, "getIpv6Addresses"),
-			}
+			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
