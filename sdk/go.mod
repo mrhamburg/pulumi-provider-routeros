@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-routeros/sdk
+module github.com/mrhamburg/pulumi-provider-routeros/sdk
 
 go 1.17
 

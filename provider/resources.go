@@ -21,7 +21,7 @@ import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
-	"github.com/pulumi/pulumi-routeros/provider/pkg/version"
+	"github.com/mrhamburg/pulumi-provider-routeros/provider/pkg/version"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/terraform-routeros/terraform-provider-routeros/routeros"
 )
@@ -33,7 +33,46 @@ const (
 	mainPkg = "routeros"
 	// modules:
 	mainMod = "index" // the routeros module
+	rosInterface    = "Interface"
+	rosCapsMan 		= "CapsMan"
+	rosIp 			= "Ip"
+	rosIpv6			= "Ipv6"
+	rosOpenVpn		= "OpenVpn"
+	rosPpp 			= "Ppp"
+	rosRouting 		= "Routing"
+	rosSystem 		= "System"
 )
+
+// boolRef returns a reference to the bool argument.
+func boolRef(b bool) *bool {
+	return &b
+}
+
+// routerOsMember manufactures a type token for the RouterOs package and the given module and type.
+func routerOsMember(mod string, mem string) tokens.ModuleMember {
+	return tokens.ModuleMember(mainPkg + ":" + mod + ":" + mem)
+}
+
+// routerOsType manufactures a type token for the RouterOs package and the given module and type.
+func routerOsType(mod string, typ string) tokens.Type {
+	return tokens.Type(routerOsMember(mod, typ))
+}
+
+// routerOsDataSource manufactures a standard resource token given a module and resource name.
+// It automatically uses the RouterOs package and names the file by simply lower casing the data
+// source's first character.
+func routerOsDataSource(mod string, res string) tokens.ModuleMember {
+	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
+	return routerOsMember(mod+"/"+fn, res)
+}
+
+// routerOsResource manufactures a standard resource token given a module and resource name.
+// It automatically uses the routeros package and names the file by simply lower casing the resource's
+// first character.
+func routerOsResource(mod string, res string) tokens.Type {
+	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
+	return routerOsType(mod+"/"+fn, res)
+}
 
 // preConfigureCallback is called before the providerConfigure function of the underlying provider.
 // It should validate that the provider can be configured, and provide actionable errors in the case
@@ -77,19 +116,38 @@ func Provider() tfbridge.ProviderInfo {
 		Keywords:   []string{"pulumi", "routeros", "category/cloud"},
 		License:    "Apache-2.0",
 		Homepage:   "https://www.pulumi.com",
-		Repository: "https://github.com/pulumi/pulumi-routeros",
+		Repository: "https://github.com/mrhamburg/pulumi-provider-routeros",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
 		GitHubOrg: "",
-		Config:    map[string]*tfbridge.SchemaInfo{
-			// Add any required configuration here, or remove the example below if
-			// no additional points are required.
-			// "region": {
-			// 	Type: tfbridge.MakeType("region", "Region"),
-			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"AWS_REGION", "AWS_DEFAULT_REGION"},
-			// 	},
-			// },
+		Config: map[string]*tfbridge.SchemaInfo{
+			"hosturl": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"ROS_HOSTURL"},
+				},
+			},
+			"username": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"ROS_USERNAME"},
+				},
+			},
+			"password": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"ROS_PASSWORD"},
+				},
+				Secret: boolRef(true),
+			},
+			"ca_certificate": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"ROS_CA_CERTIFICATE"},
+				},
+				Secret: boolRef(true),
+			},
+			"insecure": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"ROS_INSECURE"},
+				},
+			},
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources:            map[string]*tfbridge.ResourceInfo{
@@ -105,11 +163,68 @@ func Provider() tfbridge.ProviderInfo {
 			// 		"tags": {Type: tfbridge.MakeType(mainPkg, "Tags")},
 			// 	},
 			// },
+			"routeros_capsman_aaa": {Tok: routerOsResource(rosCapsMan, "Aaa")},
+			"routeros_capsman_channel": {Tok: routerOsResource(rosCapsMan, "Channel")},
+			"routeros_capsman_configuration": {Tok: routerOsResource(rosCapsMan, "Configuration")},
+			"routeros_capsman_datapath": {Tok: routerOsResource(rosCapsMan, "Datapath")},
+			"routeros_capsman_manager": {Tok: routerOsResource(rosCapsMan, "Manager")},
+			"routeros_capsman_manager_interface": {Tok: routerOsResource(rosCapsMan, "ManagerInterface")},
+			"routeros_capsman_provisioning": {Tok: routerOsResource(rosCapsMan, "Provisioning")},
+			"routeros_capsman_rates": {Tok: routerOsResource(rosCapsMan, "Rates")},
+			"routeros_capsman_security": {Tok: routerOsResource(rosCapsMan, "Security")},
+			"routeros_interface_bridge": {Tok: routerOsResource(rosInterface, "Bridge")},
+			"routeros_interface_bridge_port": {Tok: routerOsResource(rosInterface, "BridgePort")},
+			"routeros_interface_bridge_vlan": {Tok: routerOsResource(rosInterface, "BridgeVlan")},
+			"routeros_interface_gre": {Tok: routerOsResource(rosInterface, "Gre")},
+			"routeros_interface_list": {Tok: routerOsResource(rosInterface, "List")},
+			"routeros_interface_list_member": {Tok: routerOsResource(rosInterface, "ListMember")},
+			"routeros_interface_ovpn_server": {Tok: routerOsResource(rosInterface, "OpenVpnServer")},
+			"routeros_interface_vlan": {Tok: routerOsResource(rosInterface, "Vlan")},
+			"routeros_interface_vrrp": {Tok: routerOsResource(rosInterface, "Vrrp")},
+			"routeros_interface_wireguard": {Tok: routerOsResource(rosInterface, "Wireguard")},
+			"routeros_interface_wireguard_peer": {Tok: routerOsResource(rosInterface, "WireguardPeer")},
+			"routeros_ip_address": {Tok: routerOsResource(rosIp, "Address")},
+			"routeros_ip_dhcp_client": {Tok: routerOsResource(rosIp, "DhcpClient")},
+			"routeros_ip_dhcp_server": {Tok: routerOsResource(rosIp, "DhcpServer")},
+			"routeros_ip_dhcp_server_lease": {Tok: routerOsResource(rosIp, "DhcpServerLease")},
+			"routeros_ip_dhcp_server_network": {Tok: routerOsResource(rosIp, "DhcpServerNetwork")},
+			"routeros_ip_dns": {Tok: routerOsResource(rosIp, "Dns")},
+			"routeros_ip_dns_record": {Tok: routerOsResource(rosIp, "DnsRecord")},
+			"routeros_ip_firewall_addr_list": {Tok: routerOsResource(rosIp, "FirewallAddrList")},
+			"routeros_ip_firewall_filter": {Tok: routerOsResource(rosIp, "FirewallFilter")},
+			"routeros_ip_firewall_mangle": {Tok: routerOsResource(rosIp, "FirewallMangle")},
+			"routeros_ip_firewall_nat": {Tok: routerOsResource(rosIp, "FirewallNat")},
+			"routeros_ip_pool": {Tok: routerOsResource(rosIp, "Pool")},
+			"routeros_ip_route": {Tok: routerOsResource(rosIp, "Route")},
+			"routeros_ip_service": {Tok: routerOsResource(rosIp, "Service")},
+			"routeros_ipv6_address": {Tok: routerOsResource(rosIpv6, "Address")},
+			"routeros_ipv6_firewall_filter": {Tok: routerOsResource(rosIpv6, "FirewallFilter")},
+			"routeros_ipv6_route": {Tok: routerOsResource(rosIpv6, "Route")},
+			"routeros_ovpn_server": {Tok: routerOsResource(rosOpenVpn, "Server")},
+			"routeros_ppp_profile": {Tok: routerOsResource(rosPpp, "Profile")},
+			"routeros_ppp_secret": {Tok: routerOsResource(rosPpp, "Secret")},
+			"routeros_routing_table": {Tok: routerOsResource(rosRouting, "Routing")},
+			"routeros_system_certificate": {Tok: routerOsResource(rosSystem, "Certificate")},
+			"routeros_system_identity": {Tok: routerOsResource(rosSystem, "Identity")},
+			"routeros_system_scheduler": {Tok: routerOsResource(rosSystem, "Scheduler")},
+			"routeros_system_user": {Tok: routerOsResource(rosSystem, "User")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi function. An example
-			// is below.
-			// "aws_ami": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAmi")},
+			"routeros_firewall": {
+				Tok: routerOsDataSource(rosIp, "getFirewall"),
+			},
+			"routeros_interfaces": {
+				Tok: routerOsDataSource(rosInterface, "getInterfaces"),
+			},
+			"routeros_ip_addresses": {
+				Tok: routerOsDataSource(rosIp, "getAddresses"),
+			},
+			"routeros_ip_routes": {
+				Tok: routerOsDataSource(rosIp, "getRoutes"),
+			},
+			"routeros_ipv6_addresses": {
+				Tok: routerOsDataSource(rosIpv6, "getIpv6Addresses"),
+			}
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
