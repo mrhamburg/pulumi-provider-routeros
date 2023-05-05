@@ -20,8 +20,8 @@ import (
 	_ "embed"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	xyz "github.com/pulumi/pulumi-xyz/provider"
-	"github.com/pulumi/pulumi-xyz/provider/pkg/version"
+	routeros "github.com/pulumi/pulumi-routeros/provider"
+	"github.com/pulumi/pulumi-routeros/provider/pkg/version"
 )
 
 //go:embed schema-embed.json
@@ -29,5 +29,5 @@ var pulumiSchema []byte
 
 func main() {
 	// Modify the path to point to the new provider
-	tfbridge.Main("xyz", version.Version, xyz.Provider(), pulumiSchema)
+	tfbridge.Main("routeros", version.Version, routeros.Provider(), pulumiSchema)
 }

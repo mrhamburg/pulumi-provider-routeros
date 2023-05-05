@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-xyz/provider
+module github.com/mrhamburg/pulumi-provider-routeros/provider
 
 go 1.18
 
@@ -7,6 +7,7 @@ replace (
 )
 
 require (
+	github.com/terraform-routeros/terraform-provider-routeros v1.6.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.28.1
 	github.com/pulumi/pulumi/sdk/v3 v3.38.0
 )
