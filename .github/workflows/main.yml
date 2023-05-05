@@ -1,0 +1,32 @@
+name: main
+
+permissions:
+  contents: write
+
+
+"on":
+  push:
+    branches:
+    - main
+    paths-ignore:
+    - CHANGELOG.md
+    tags-ignore:
+    - v*
+    - sdk/*
+    - '**'
+
+env:
+  # TODO: this
+  OVH_ENDPOINT: "ovh-us"
+  OVH_APPLICATION_KEY: ${{ secrets.OVH_APPLICATION_KEY }}
+  OVH_APPLICATION_SECRET: ${{ secrets.OVH_APPLICATION_SECRET }}
+  OVH_CONSUMER_KEY: ${{ secrets.OVH_CONSUMER_KEY }}
+  
+jobs:
+  main:
+    uses: ./.github/workflows/main-reusable.yml
+    secrets: inherit
+    with:
+      pulumi_test_owner: "mrhamburg"
+      provider_name: "routeros"
+

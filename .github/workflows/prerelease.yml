@@ -1,0 +1,24 @@
+name: prerelease
+
+permissions:
+  contents: write
+
+"on":
+  push:
+    tags:
+    - v*.*.*-**
+
+env:
+  # TODO: this
+  OVH_ENDPOINT: "ovh-us"
+  OVH_APPLICATION_KEY: ${{ secrets.OVH_APPLICATION_KEY }}
+  OVH_APPLICATION_SECRET: ${{ secrets.OVH_APPLICATION_SECRET }}
+  OVH_CONSUMER_KEY: ${{ secrets.OVH_CONSUMER_KEY }}
+  
+jobs:
+  main:
+    uses: ./.github/workflows/prerelease-reusable.yml
+    secrets: inherit
+    with:
+      pulumi_test_owner: "mrhamburg"
+      provider_name: "routeros"
