@@ -5,359 +5,370 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface DatasourceFirewallAddressList {
-    address: string;
-    comment: string;
-    creationTime: string;
-    disabled: boolean;
-    dynamic: boolean;
-    /**
-     * Additional request filtering options.
-     */
-    filter?: {[key: string]: any};
-    /**
-     * The ID of this resource.
-     */
-    id: string;
-    list: string;
-    timeout: string;
+export namespace Iface {
+    export interface GetInterfacesInterface {
+        actualMtu: number;
+        comment: string;
+        defaultName: string;
+        disabled: boolean;
+        fpRxByte: number;
+        fpRxPacket: number;
+        fpTxByte: number;
+        fpTxPacket: number;
+        /**
+         * The ID of this resource.
+         */
+        id: string;
+        l2mtu: number;
+        lastLinkDownTime: string;
+        lastLinkUpTime: string;
+        linkDowns: number;
+        macAddress: string;
+        maxL2mtu: number;
+        mtu: string;
+        name: string;
+        running: boolean;
+        rxByte: number;
+        rxDrop: number;
+        rxError: number;
+        rxPacket: number;
+        slave: boolean;
+        txByte: number;
+        txDrop: number;
+        txError: number;
+        txPacket: number;
+        txQueueDrop: number;
+        type: string;
+    }
+
 }
 
-export interface DatasourceFirewallMangle {
-    action: string;
-    addressList: string;
-    addressListTimeout: string;
-    bytes: number;
-    chain: string;
-    comment: string;
-    connectionBytes: string;
-    connectionLimit: string;
-    connectionMark: string;
-    connectionNatState: string;
-    connectionRate: string;
-    connectionState: string;
-    connectionType: string;
-    content: string;
-    disabled: boolean;
-    dscp: number;
-    dstAddress: string;
-    dstAddressList: string;
-    dstAddressType: string;
-    dstLimit: string;
-    dstPort: string;
-    dynamic: boolean;
-    /**
-     * Additional request filtering options.
-     */
-    filter?: {[key: string]: any};
-    fragment: boolean;
-    hotspot: string;
-    icmpOptions: string;
-    /**
-     * The ID of this resource.
-     */
-    id: string;
-    inBridgePort: string;
-    inBridgePortList: string;
-    inInterface: string;
-    inInterfaceList: string;
-    ingressPriority: number;
-    invalid: boolean;
-    ipsecPolicy: string;
-    ipv4Options: string;
-    jumpTarget: string;
-    layer7Protocol: string;
-    limit: string;
-    log: boolean;
-    logPrefix: string;
-    newConnectionMark: string;
-    newDscp: number;
-    newMss: number;
-    newPacketMark: string;
-    newPriority: string;
-    newRoutingMark: string;
-    newTtl: string;
-    nth: string;
-    outBridgePort: string;
-    outBridgePortList: string;
-    outInterface: string;
-    outInterfaceList: string;
-    packetMark: string;
-    packetSize: string;
-    packets: number;
-    passthrough: boolean;
-    perConnectionClassifier: string;
-    port: string;
-    protocol: string;
-    psd: string;
-    random: number;
-    routeDst: string;
-    routingMark: string;
-    srcAddress: string;
-    srcAddressList: string;
-    srcAddressType: string;
-    srcMacAddress: string;
-    srcPort: string;
-    tcpFlags: string;
-    tcpMss: string;
-    time: string;
-    tlsHost: string;
-    ttl: string;
+export namespace Ip {
+    export interface GetAddressesAddress {
+        actualInterface: string;
+        address: string;
+        disabled: boolean;
+        dynamic: boolean;
+        /**
+         * The ID of this resource.
+         */
+        id: string;
+        interface: string;
+        invalid: boolean;
+        network: string;
+    }
+
+    export interface GetFirewallAddressList {
+        address: string;
+        comment: string;
+        creationTime: string;
+        disabled: boolean;
+        dynamic: boolean;
+        /**
+         * Additional request filtering options.
+         */
+        filter?: {[key: string]: any};
+        /**
+         * The ID of this resource.
+         */
+        id: string;
+        list: string;
+        timeout: string;
+    }
+
+    export interface GetFirewallMangle {
+        action: string;
+        addressList: string;
+        addressListTimeout: string;
+        bytes: number;
+        chain: string;
+        comment: string;
+        connectionBytes: string;
+        connectionLimit: string;
+        connectionMark: string;
+        connectionNatState: string;
+        connectionRate: string;
+        connectionState: string;
+        connectionType: string;
+        content: string;
+        disabled: boolean;
+        dscp: number;
+        dstAddress: string;
+        dstAddressList: string;
+        dstAddressType: string;
+        dstLimit: string;
+        dstPort: string;
+        dynamic: boolean;
+        /**
+         * Additional request filtering options.
+         */
+        filter?: {[key: string]: any};
+        fragment: boolean;
+        hotspot: string;
+        icmpOptions: string;
+        /**
+         * The ID of this resource.
+         */
+        id: string;
+        inBridgePort: string;
+        inBridgePortList: string;
+        inInterface: string;
+        inInterfaceList: string;
+        ingressPriority: number;
+        invalid: boolean;
+        ipsecPolicy: string;
+        ipv4Options: string;
+        jumpTarget: string;
+        layer7Protocol: string;
+        limit: string;
+        log: boolean;
+        logPrefix: string;
+        newConnectionMark: string;
+        newDscp: number;
+        newMss: number;
+        newPacketMark: string;
+        newPriority: string;
+        newRoutingMark: string;
+        newTtl: string;
+        nth: string;
+        outBridgePort: string;
+        outBridgePortList: string;
+        outInterface: string;
+        outInterfaceList: string;
+        packetMark: string;
+        packetSize: string;
+        packets: number;
+        passthrough: boolean;
+        perConnectionClassifier: string;
+        port: string;
+        protocol: string;
+        psd: string;
+        random: number;
+        routeDst: string;
+        routingMark: string;
+        srcAddress: string;
+        srcAddressList: string;
+        srcAddressType: string;
+        srcMacAddress: string;
+        srcPort: string;
+        tcpFlags: string;
+        tcpMss: string;
+        time: string;
+        tlsHost: string;
+        ttl: string;
+    }
+
+    export interface GetFirewallNat {
+        action: string;
+        addressList: string;
+        addressListTimeout: string;
+        bytes: number;
+        chain: string;
+        comment: string;
+        connectionBytes: string;
+        connectionLimit: string;
+        connectionMark: string;
+        connectionRate: string;
+        connectionType: string;
+        content: string;
+        disabled: boolean;
+        dscp: number;
+        dstAddress: string;
+        dstAddressList: string;
+        dstAddressType: string;
+        dstLimit: string;
+        dstPort: string;
+        dynamic: boolean;
+        /**
+         * Additional request filtering options.
+         */
+        filter?: {[key: string]: any};
+        fragment: boolean;
+        hotspot: string;
+        icmpOptions: string;
+        /**
+         * The ID of this resource.
+         */
+        id: string;
+        inBridgePort: string;
+        inBridgePortList: string;
+        inInterface: string;
+        inInterfaceList: string;
+        ingressPriority: number;
+        invalid: boolean;
+        ipsecPolicy: string;
+        ipv4Options: string;
+        jumpTarget: string;
+        layer7Protocol: string;
+        limit: string;
+        log: boolean;
+        logPrefix: string;
+        nth: string;
+        outBridgePort: string;
+        outBridgePortList: string;
+        outInterface: string;
+        outInterfaceList: string;
+        packetMark: string;
+        packetSize: string;
+        packets: number;
+        perConnectionClassifier: string;
+        port: string;
+        priority: number;
+        protocol: string;
+        psd: string;
+        random: number;
+        routingMark: string;
+        sameNotByDst: boolean;
+        srcAddress: string;
+        srcAddressList: string;
+        srcAddressType: string;
+        srcMacAddress: string;
+        srcPort: string;
+        tcpMss: string;
+        time: string;
+        toAddresses: string;
+        toPorts: string;
+        ttl: string;
+    }
+
+    export interface GetFirewallRule {
+        action: string;
+        addressListTimeout: string;
+        bytes: number;
+        chain: string;
+        comment: string;
+        connectionBytes: string;
+        connectionLimit: string;
+        connectionMark: string;
+        connectionNatState: string;
+        connectionRate: string;
+        connectionState: string;
+        connectionType: string;
+        content: string;
+        disabled: boolean;
+        dscp: number;
+        dstAddress: string;
+        dstAddressList: string;
+        dstAddressType: string;
+        dstLimit: string;
+        dstPort: string;
+        dynamic: boolean;
+        /**
+         * Additional request filtering options.
+         */
+        filter?: {[key: string]: any};
+        fragment: boolean;
+        hotspot: string;
+        hwOffload: boolean;
+        icmpOptions: string;
+        /**
+         * The ID of this resource.
+         */
+        id: string;
+        inBridgePort: string;
+        inBridgePortList: string;
+        inInterface: string;
+        inInterfaceList: string;
+        ingressPriority: number;
+        invalid: boolean;
+        ipsecPolicy: string;
+        ipv4Options: string;
+        jumpTarget: string;
+        layer7Protocol: string;
+        limit: string;
+        log: boolean;
+        logPrefix: string;
+        nth: string;
+        outBridgePort: string;
+        outBridgePortList: string;
+        outInterface: string;
+        outInterfaceList: string;
+        packetMark: string;
+        packetSize: string;
+        packets: number;
+        perConnectionClassifier: string;
+        port: string;
+        priority: number;
+        protocol: string;
+        psd: string;
+        random: number;
+        rejectWith: string;
+        routingMark: string;
+        routingTable: string;
+        srcAddress: string;
+        srcAddressList: string;
+        srcAddressType: string;
+        srcMacAddress: string;
+        srcPort: string;
+        tcpFlags: string;
+        tcpMss: string;
+        time: string;
+        tlsHost: string;
+        ttl: string;
+    }
+
+    export interface GetRoutesRoute {
+        active: boolean;
+        blackhole: boolean;
+        connect: boolean;
+        dhcp: boolean;
+        disabled: boolean;
+        distance: number;
+        dstAddress: string;
+        dynamic: boolean;
+        ecmp: boolean;
+        gateway: string;
+        hwOffloaded: boolean;
+        /**
+         * The ID of this resource.
+         */
+        id: string;
+        immediateGw: string;
+        inactive: boolean;
+        localAddress: string;
+        prefSrc: string;
+        routingTable: string;
+        scope: number;
+        static: boolean;
+        suppressHwOffload: boolean;
+        targetScope: number;
+        vrfInterface: string;
+    }
+
 }
 
-export interface DatasourceFirewallNat {
-    action: string;
-    addressList: string;
-    addressListTimeout: string;
-    bytes: number;
-    chain: string;
-    comment: string;
-    connectionBytes: string;
-    connectionLimit: string;
-    connectionMark: string;
-    connectionRate: string;
-    connectionType: string;
-    content: string;
-    disabled: boolean;
-    dscp: number;
-    dstAddress: string;
-    dstAddressList: string;
-    dstAddressType: string;
-    dstLimit: string;
-    dstPort: string;
-    dynamic: boolean;
-    /**
-     * Additional request filtering options.
-     */
-    filter?: {[key: string]: any};
-    fragment: boolean;
-    hotspot: string;
-    icmpOptions: string;
-    /**
-     * The ID of this resource.
-     */
-    id: string;
-    inBridgePort: string;
-    inBridgePortList: string;
-    inInterface: string;
-    inInterfaceList: string;
-    ingressPriority: number;
-    invalid: boolean;
-    ipsecPolicy: string;
-    ipv4Options: string;
-    jumpTarget: string;
-    layer7Protocol: string;
-    limit: string;
-    log: boolean;
-    logPrefix: string;
-    nth: string;
-    outBridgePort: string;
-    outBridgePortList: string;
-    outInterface: string;
-    outInterfaceList: string;
-    packetMark: string;
-    packetSize: string;
-    packets: number;
-    perConnectionClassifier: string;
-    port: string;
-    priority: number;
-    protocol: string;
-    psd: string;
-    random: number;
-    routingMark: string;
-    sameNotByDst: boolean;
-    srcAddress: string;
-    srcAddressList: string;
-    srcAddressType: string;
-    srcMacAddress: string;
-    srcPort: string;
-    tcpMss: string;
-    time: string;
-    toAddresses: string;
-    toPorts: string;
-    ttl: string;
+export namespace Ipv6 {
+    export interface GetIpv6AddressesAddress {
+        actualInterface: string;
+        address: string;
+        advertise: boolean;
+        comment: string;
+        disabled: boolean;
+        dynamic: boolean;
+        eui64: boolean;
+        fromPool: string;
+        /**
+         * The ID of this resource.
+         */
+        id: string;
+        interface: string;
+        invalid: boolean;
+        linkLocal: boolean;
+        noDad: boolean;
+    }
+
 }
 
-export interface DatasourceFirewallRule {
-    action: string;
-    addressListTimeout: string;
-    bytes: number;
-    chain: string;
-    comment: string;
-    connectionBytes: string;
-    connectionLimit: string;
-    connectionMark: string;
-    connectionNatState: string;
-    connectionRate: string;
-    connectionState: string;
-    connectionType: string;
-    content: string;
-    disabled: boolean;
-    dscp: number;
-    dstAddress: string;
-    dstAddressList: string;
-    dstAddressType: string;
-    dstLimit: string;
-    dstPort: string;
-    dynamic: boolean;
-    /**
-     * Additional request filtering options.
-     */
-    filter?: {[key: string]: any};
-    fragment: boolean;
-    hotspot: string;
-    hwOffload: boolean;
-    icmpOptions: string;
-    /**
-     * The ID of this resource.
-     */
-    id: string;
-    inBridgePort: string;
-    inBridgePortList: string;
-    inInterface: string;
-    inInterfaceList: string;
-    ingressPriority: number;
-    invalid: boolean;
-    ipsecPolicy: string;
-    ipv4Options: string;
-    jumpTarget: string;
-    layer7Protocol: string;
-    limit: string;
-    log: boolean;
-    logPrefix: string;
-    nth: string;
-    outBridgePort: string;
-    outBridgePortList: string;
-    outInterface: string;
-    outInterfaceList: string;
-    packetMark: string;
-    packetSize: string;
-    packets: number;
-    perConnectionClassifier: string;
-    port: string;
-    priority: number;
-    protocol: string;
-    psd: string;
-    random: number;
-    rejectWith: string;
-    routingMark: string;
-    routingTable: string;
-    srcAddress: string;
-    srcAddressList: string;
-    srcAddressType: string;
-    srcMacAddress: string;
-    srcPort: string;
-    tcpFlags: string;
-    tcpMss: string;
-    time: string;
-    tlsHost: string;
-    ttl: string;
-}
+export namespace System {
+    export interface CertificateSign {
+        /**
+         * Which CA to use if signing issued certificates.
+         */
+        ca: string;
+        /**
+         * CRL host if issuing CA certificate.
+         */
+        caCrlHost: string;
+    }
 
-export interface DatasourceIPAddressesAddress {
-    actualInterface: string;
-    address: string;
-    disabled: boolean;
-    dynamic: boolean;
-    /**
-     * The ID of this resource.
-     */
-    id: string;
-    interface: string;
-    invalid: boolean;
-    network: string;
 }
-
-export interface DatasourceIPRoutesRoute {
-    active: boolean;
-    blackhole: boolean;
-    connect: boolean;
-    dhcp: boolean;
-    disabled: boolean;
-    distance: number;
-    dstAddress: string;
-    dynamic: boolean;
-    ecmp: boolean;
-    gateway: string;
-    hwOffloaded: boolean;
-    /**
-     * The ID of this resource.
-     */
-    id: string;
-    immediateGw: string;
-    inactive: boolean;
-    localAddress: string;
-    prefSrc: string;
-    routingTable: string;
-    scope: number;
-    static: boolean;
-    suppressHwOffload: boolean;
-    targetScope: number;
-    vrfInterface: string;
-}
-
-export interface DatasourceIPv6AddressesAddress {
-    actualInterface: string;
-    address: string;
-    advertise: boolean;
-    comment: string;
-    disabled: boolean;
-    dynamic: boolean;
-    eui64: boolean;
-    fromPool: string;
-    /**
-     * The ID of this resource.
-     */
-    id: string;
-    interface: string;
-    invalid: boolean;
-    linkLocal: boolean;
-    noDad: boolean;
-}
-
-export interface DatasourceInterfacesInterface {
-    actualMtu: number;
-    comment: string;
-    defaultName: string;
-    disabled: boolean;
-    fpRxByte: number;
-    fpRxPacket: number;
-    fpTxByte: number;
-    fpTxPacket: number;
-    /**
-     * The ID of this resource.
-     */
-    id: string;
-    l2mtu: number;
-    lastLinkDownTime: string;
-    lastLinkUpTime: string;
-    linkDowns: number;
-    macAddress: string;
-    maxL2mtu: number;
-    mtu: string;
-    name: string;
-    running: boolean;
-    rxByte: number;
-    rxDrop: number;
-    rxError: number;
-    rxPacket: number;
-    slave: boolean;
-    txByte: number;
-    txDrop: number;
-    txError: number;
-    txPacket: number;
-    txQueueDrop: number;
-    type: string;
-}
-
-export interface ResourceSystemCertificateSign {
-    /**
-     * Which CA to use if signing issued certificates.
-     */
-    ca: string;
-    /**
-     * CRL host if issuing CA certificate.
-     */
-    caCrlHost: string;
-}
-

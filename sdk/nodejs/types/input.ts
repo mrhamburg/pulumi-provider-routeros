@@ -5,511 +5,522 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface DatasourceFirewallAddressList {
-    address?: string;
-    comment?: string;
-    creationTime?: string;
-    disabled?: boolean;
-    dynamic?: boolean;
-    /**
-     * Additional request filtering options.
-     */
-    filter?: {[key: string]: any};
-    /**
-     * The ID of this resource.
-     */
-    id?: string;
-    list?: string;
-    timeout?: string;
+export namespace Iface {
 }
 
-export interface DatasourceFirewallAddressListArgs {
-    address?: pulumi.Input<string>;
-    comment?: pulumi.Input<string>;
-    creationTime?: pulumi.Input<string>;
-    disabled?: pulumi.Input<boolean>;
-    dynamic?: pulumi.Input<boolean>;
-    /**
-     * Additional request filtering options.
-     */
-    filter?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The ID of this resource.
-     */
-    id?: pulumi.Input<string>;
-    list?: pulumi.Input<string>;
-    timeout?: pulumi.Input<string>;
+export namespace Ip {
+    export interface GetFirewallAddressList {
+        address?: string;
+        comment?: string;
+        creationTime?: string;
+        disabled?: boolean;
+        dynamic?: boolean;
+        /**
+         * Additional request filtering options.
+         */
+        filter?: {[key: string]: any};
+        /**
+         * The ID of this resource.
+         */
+        id?: string;
+        list?: string;
+        timeout?: string;
+    }
+
+    export interface GetFirewallAddressListArgs {
+        address?: pulumi.Input<string>;
+        comment?: pulumi.Input<string>;
+        creationTime?: pulumi.Input<string>;
+        disabled?: pulumi.Input<boolean>;
+        dynamic?: pulumi.Input<boolean>;
+        /**
+         * Additional request filtering options.
+         */
+        filter?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * The ID of this resource.
+         */
+        id?: pulumi.Input<string>;
+        list?: pulumi.Input<string>;
+        timeout?: pulumi.Input<string>;
+    }
+
+    export interface GetFirewallMangle {
+        action?: string;
+        addressList?: string;
+        addressListTimeout?: string;
+        bytes?: number;
+        chain?: string;
+        comment?: string;
+        connectionBytes?: string;
+        connectionLimit?: string;
+        connectionMark?: string;
+        connectionNatState?: string;
+        connectionRate?: string;
+        connectionState?: string;
+        connectionType?: string;
+        content?: string;
+        disabled?: boolean;
+        dscp?: number;
+        dstAddress?: string;
+        dstAddressList?: string;
+        dstAddressType?: string;
+        dstLimit?: string;
+        dstPort?: string;
+        dynamic?: boolean;
+        /**
+         * Additional request filtering options.
+         */
+        filter?: {[key: string]: any};
+        fragment?: boolean;
+        hotspot?: string;
+        icmpOptions?: string;
+        /**
+         * The ID of this resource.
+         */
+        id?: string;
+        inBridgePort?: string;
+        inBridgePortList?: string;
+        inInterface?: string;
+        inInterfaceList?: string;
+        ingressPriority?: number;
+        invalid?: boolean;
+        ipsecPolicy?: string;
+        ipv4Options?: string;
+        jumpTarget?: string;
+        layer7Protocol?: string;
+        limit?: string;
+        log?: boolean;
+        logPrefix?: string;
+        newConnectionMark?: string;
+        newDscp?: number;
+        newMss?: number;
+        newPacketMark?: string;
+        newPriority?: string;
+        newRoutingMark?: string;
+        newTtl?: string;
+        nth?: string;
+        outBridgePort?: string;
+        outBridgePortList?: string;
+        outInterface?: string;
+        outInterfaceList?: string;
+        packetMark?: string;
+        packetSize?: string;
+        packets?: number;
+        passthrough?: boolean;
+        perConnectionClassifier?: string;
+        port?: string;
+        protocol?: string;
+        psd?: string;
+        random?: number;
+        routeDst?: string;
+        routingMark?: string;
+        srcAddress?: string;
+        srcAddressList?: string;
+        srcAddressType?: string;
+        srcMacAddress?: string;
+        srcPort?: string;
+        tcpFlags?: string;
+        tcpMss?: string;
+        time?: string;
+        tlsHost?: string;
+        ttl?: string;
+    }
+
+    export interface GetFirewallMangleArgs {
+        action?: pulumi.Input<string>;
+        addressList?: pulumi.Input<string>;
+        addressListTimeout?: pulumi.Input<string>;
+        bytes?: pulumi.Input<number>;
+        chain?: pulumi.Input<string>;
+        comment?: pulumi.Input<string>;
+        connectionBytes?: pulumi.Input<string>;
+        connectionLimit?: pulumi.Input<string>;
+        connectionMark?: pulumi.Input<string>;
+        connectionNatState?: pulumi.Input<string>;
+        connectionRate?: pulumi.Input<string>;
+        connectionState?: pulumi.Input<string>;
+        connectionType?: pulumi.Input<string>;
+        content?: pulumi.Input<string>;
+        disabled?: pulumi.Input<boolean>;
+        dscp?: pulumi.Input<number>;
+        dstAddress?: pulumi.Input<string>;
+        dstAddressList?: pulumi.Input<string>;
+        dstAddressType?: pulumi.Input<string>;
+        dstLimit?: pulumi.Input<string>;
+        dstPort?: pulumi.Input<string>;
+        dynamic?: pulumi.Input<boolean>;
+        /**
+         * Additional request filtering options.
+         */
+        filter?: pulumi.Input<{[key: string]: any}>;
+        fragment?: pulumi.Input<boolean>;
+        hotspot?: pulumi.Input<string>;
+        icmpOptions?: pulumi.Input<string>;
+        /**
+         * The ID of this resource.
+         */
+        id?: pulumi.Input<string>;
+        inBridgePort?: pulumi.Input<string>;
+        inBridgePortList?: pulumi.Input<string>;
+        inInterface?: pulumi.Input<string>;
+        inInterfaceList?: pulumi.Input<string>;
+        ingressPriority?: pulumi.Input<number>;
+        invalid?: pulumi.Input<boolean>;
+        ipsecPolicy?: pulumi.Input<string>;
+        ipv4Options?: pulumi.Input<string>;
+        jumpTarget?: pulumi.Input<string>;
+        layer7Protocol?: pulumi.Input<string>;
+        limit?: pulumi.Input<string>;
+        log?: pulumi.Input<boolean>;
+        logPrefix?: pulumi.Input<string>;
+        newConnectionMark?: pulumi.Input<string>;
+        newDscp?: pulumi.Input<number>;
+        newMss?: pulumi.Input<number>;
+        newPacketMark?: pulumi.Input<string>;
+        newPriority?: pulumi.Input<string>;
+        newRoutingMark?: pulumi.Input<string>;
+        newTtl?: pulumi.Input<string>;
+        nth?: pulumi.Input<string>;
+        outBridgePort?: pulumi.Input<string>;
+        outBridgePortList?: pulumi.Input<string>;
+        outInterface?: pulumi.Input<string>;
+        outInterfaceList?: pulumi.Input<string>;
+        packetMark?: pulumi.Input<string>;
+        packetSize?: pulumi.Input<string>;
+        packets?: pulumi.Input<number>;
+        passthrough?: pulumi.Input<boolean>;
+        perConnectionClassifier?: pulumi.Input<string>;
+        port?: pulumi.Input<string>;
+        protocol?: pulumi.Input<string>;
+        psd?: pulumi.Input<string>;
+        random?: pulumi.Input<number>;
+        routeDst?: pulumi.Input<string>;
+        routingMark?: pulumi.Input<string>;
+        srcAddress?: pulumi.Input<string>;
+        srcAddressList?: pulumi.Input<string>;
+        srcAddressType?: pulumi.Input<string>;
+        srcMacAddress?: pulumi.Input<string>;
+        srcPort?: pulumi.Input<string>;
+        tcpFlags?: pulumi.Input<string>;
+        tcpMss?: pulumi.Input<string>;
+        time?: pulumi.Input<string>;
+        tlsHost?: pulumi.Input<string>;
+        ttl?: pulumi.Input<string>;
+    }
+
+    export interface GetFirewallNat {
+        action?: string;
+        addressList?: string;
+        addressListTimeout?: string;
+        bytes?: number;
+        chain?: string;
+        comment?: string;
+        connectionBytes?: string;
+        connectionLimit?: string;
+        connectionMark?: string;
+        connectionRate?: string;
+        connectionType?: string;
+        content?: string;
+        disabled?: boolean;
+        dscp?: number;
+        dstAddress?: string;
+        dstAddressList?: string;
+        dstAddressType?: string;
+        dstLimit?: string;
+        dstPort?: string;
+        dynamic?: boolean;
+        /**
+         * Additional request filtering options.
+         */
+        filter?: {[key: string]: any};
+        fragment?: boolean;
+        hotspot?: string;
+        icmpOptions?: string;
+        /**
+         * The ID of this resource.
+         */
+        id?: string;
+        inBridgePort?: string;
+        inBridgePortList?: string;
+        inInterface?: string;
+        inInterfaceList?: string;
+        ingressPriority?: number;
+        invalid?: boolean;
+        ipsecPolicy?: string;
+        ipv4Options?: string;
+        jumpTarget?: string;
+        layer7Protocol?: string;
+        limit?: string;
+        log?: boolean;
+        logPrefix?: string;
+        nth?: string;
+        outBridgePort?: string;
+        outBridgePortList?: string;
+        outInterface?: string;
+        outInterfaceList?: string;
+        packetMark?: string;
+        packetSize?: string;
+        packets?: number;
+        perConnectionClassifier?: string;
+        port?: string;
+        priority?: number;
+        protocol?: string;
+        psd?: string;
+        random?: number;
+        routingMark?: string;
+        sameNotByDst?: boolean;
+        srcAddress?: string;
+        srcAddressList?: string;
+        srcAddressType?: string;
+        srcMacAddress?: string;
+        srcPort?: string;
+        tcpMss?: string;
+        time?: string;
+        toAddresses?: string;
+        toPorts?: string;
+        ttl?: string;
+    }
+
+    export interface GetFirewallNatArgs {
+        action?: pulumi.Input<string>;
+        addressList?: pulumi.Input<string>;
+        addressListTimeout?: pulumi.Input<string>;
+        bytes?: pulumi.Input<number>;
+        chain?: pulumi.Input<string>;
+        comment?: pulumi.Input<string>;
+        connectionBytes?: pulumi.Input<string>;
+        connectionLimit?: pulumi.Input<string>;
+        connectionMark?: pulumi.Input<string>;
+        connectionRate?: pulumi.Input<string>;
+        connectionType?: pulumi.Input<string>;
+        content?: pulumi.Input<string>;
+        disabled?: pulumi.Input<boolean>;
+        dscp?: pulumi.Input<number>;
+        dstAddress?: pulumi.Input<string>;
+        dstAddressList?: pulumi.Input<string>;
+        dstAddressType?: pulumi.Input<string>;
+        dstLimit?: pulumi.Input<string>;
+        dstPort?: pulumi.Input<string>;
+        dynamic?: pulumi.Input<boolean>;
+        /**
+         * Additional request filtering options.
+         */
+        filter?: pulumi.Input<{[key: string]: any}>;
+        fragment?: pulumi.Input<boolean>;
+        hotspot?: pulumi.Input<string>;
+        icmpOptions?: pulumi.Input<string>;
+        /**
+         * The ID of this resource.
+         */
+        id?: pulumi.Input<string>;
+        inBridgePort?: pulumi.Input<string>;
+        inBridgePortList?: pulumi.Input<string>;
+        inInterface?: pulumi.Input<string>;
+        inInterfaceList?: pulumi.Input<string>;
+        ingressPriority?: pulumi.Input<number>;
+        invalid?: pulumi.Input<boolean>;
+        ipsecPolicy?: pulumi.Input<string>;
+        ipv4Options?: pulumi.Input<string>;
+        jumpTarget?: pulumi.Input<string>;
+        layer7Protocol?: pulumi.Input<string>;
+        limit?: pulumi.Input<string>;
+        log?: pulumi.Input<boolean>;
+        logPrefix?: pulumi.Input<string>;
+        nth?: pulumi.Input<string>;
+        outBridgePort?: pulumi.Input<string>;
+        outBridgePortList?: pulumi.Input<string>;
+        outInterface?: pulumi.Input<string>;
+        outInterfaceList?: pulumi.Input<string>;
+        packetMark?: pulumi.Input<string>;
+        packetSize?: pulumi.Input<string>;
+        packets?: pulumi.Input<number>;
+        perConnectionClassifier?: pulumi.Input<string>;
+        port?: pulumi.Input<string>;
+        priority?: pulumi.Input<number>;
+        protocol?: pulumi.Input<string>;
+        psd?: pulumi.Input<string>;
+        random?: pulumi.Input<number>;
+        routingMark?: pulumi.Input<string>;
+        sameNotByDst?: pulumi.Input<boolean>;
+        srcAddress?: pulumi.Input<string>;
+        srcAddressList?: pulumi.Input<string>;
+        srcAddressType?: pulumi.Input<string>;
+        srcMacAddress?: pulumi.Input<string>;
+        srcPort?: pulumi.Input<string>;
+        tcpMss?: pulumi.Input<string>;
+        time?: pulumi.Input<string>;
+        toAddresses?: pulumi.Input<string>;
+        toPorts?: pulumi.Input<string>;
+        ttl?: pulumi.Input<string>;
+    }
+
+    export interface GetFirewallRule {
+        action?: string;
+        addressListTimeout?: string;
+        bytes?: number;
+        chain?: string;
+        comment?: string;
+        connectionBytes?: string;
+        connectionLimit?: string;
+        connectionMark?: string;
+        connectionNatState?: string;
+        connectionRate?: string;
+        connectionState?: string;
+        connectionType?: string;
+        content?: string;
+        disabled?: boolean;
+        dscp?: number;
+        dstAddress?: string;
+        dstAddressList?: string;
+        dstAddressType?: string;
+        dstLimit?: string;
+        dstPort?: string;
+        dynamic?: boolean;
+        /**
+         * Additional request filtering options.
+         */
+        filter?: {[key: string]: any};
+        fragment?: boolean;
+        hotspot?: string;
+        hwOffload?: boolean;
+        icmpOptions?: string;
+        /**
+         * The ID of this resource.
+         */
+        id?: string;
+        inBridgePort?: string;
+        inBridgePortList?: string;
+        inInterface?: string;
+        inInterfaceList?: string;
+        ingressPriority?: number;
+        invalid?: boolean;
+        ipsecPolicy?: string;
+        ipv4Options?: string;
+        jumpTarget?: string;
+        layer7Protocol?: string;
+        limit?: string;
+        log?: boolean;
+        logPrefix?: string;
+        nth?: string;
+        outBridgePort?: string;
+        outBridgePortList?: string;
+        outInterface?: string;
+        outInterfaceList?: string;
+        packetMark?: string;
+        packetSize?: string;
+        packets?: number;
+        perConnectionClassifier?: string;
+        port?: string;
+        priority?: number;
+        protocol?: string;
+        psd?: string;
+        random?: number;
+        rejectWith?: string;
+        routingMark?: string;
+        routingTable?: string;
+        srcAddress?: string;
+        srcAddressList?: string;
+        srcAddressType?: string;
+        srcMacAddress?: string;
+        srcPort?: string;
+        tcpFlags?: string;
+        tcpMss?: string;
+        time?: string;
+        tlsHost?: string;
+        ttl?: string;
+    }
+
+    export interface GetFirewallRuleArgs {
+        action?: pulumi.Input<string>;
+        addressListTimeout?: pulumi.Input<string>;
+        bytes?: pulumi.Input<number>;
+        chain?: pulumi.Input<string>;
+        comment?: pulumi.Input<string>;
+        connectionBytes?: pulumi.Input<string>;
+        connectionLimit?: pulumi.Input<string>;
+        connectionMark?: pulumi.Input<string>;
+        connectionNatState?: pulumi.Input<string>;
+        connectionRate?: pulumi.Input<string>;
+        connectionState?: pulumi.Input<string>;
+        connectionType?: pulumi.Input<string>;
+        content?: pulumi.Input<string>;
+        disabled?: pulumi.Input<boolean>;
+        dscp?: pulumi.Input<number>;
+        dstAddress?: pulumi.Input<string>;
+        dstAddressList?: pulumi.Input<string>;
+        dstAddressType?: pulumi.Input<string>;
+        dstLimit?: pulumi.Input<string>;
+        dstPort?: pulumi.Input<string>;
+        dynamic?: pulumi.Input<boolean>;
+        /**
+         * Additional request filtering options.
+         */
+        filter?: pulumi.Input<{[key: string]: any}>;
+        fragment?: pulumi.Input<boolean>;
+        hotspot?: pulumi.Input<string>;
+        hwOffload?: pulumi.Input<boolean>;
+        icmpOptions?: pulumi.Input<string>;
+        /**
+         * The ID of this resource.
+         */
+        id?: pulumi.Input<string>;
+        inBridgePort?: pulumi.Input<string>;
+        inBridgePortList?: pulumi.Input<string>;
+        inInterface?: pulumi.Input<string>;
+        inInterfaceList?: pulumi.Input<string>;
+        ingressPriority?: pulumi.Input<number>;
+        invalid?: pulumi.Input<boolean>;
+        ipsecPolicy?: pulumi.Input<string>;
+        ipv4Options?: pulumi.Input<string>;
+        jumpTarget?: pulumi.Input<string>;
+        layer7Protocol?: pulumi.Input<string>;
+        limit?: pulumi.Input<string>;
+        log?: pulumi.Input<boolean>;
+        logPrefix?: pulumi.Input<string>;
+        nth?: pulumi.Input<string>;
+        outBridgePort?: pulumi.Input<string>;
+        outBridgePortList?: pulumi.Input<string>;
+        outInterface?: pulumi.Input<string>;
+        outInterfaceList?: pulumi.Input<string>;
+        packetMark?: pulumi.Input<string>;
+        packetSize?: pulumi.Input<string>;
+        packets?: pulumi.Input<number>;
+        perConnectionClassifier?: pulumi.Input<string>;
+        port?: pulumi.Input<string>;
+        priority?: pulumi.Input<number>;
+        protocol?: pulumi.Input<string>;
+        psd?: pulumi.Input<string>;
+        random?: pulumi.Input<number>;
+        rejectWith?: pulumi.Input<string>;
+        routingMark?: pulumi.Input<string>;
+        routingTable?: pulumi.Input<string>;
+        srcAddress?: pulumi.Input<string>;
+        srcAddressList?: pulumi.Input<string>;
+        srcAddressType?: pulumi.Input<string>;
+        srcMacAddress?: pulumi.Input<string>;
+        srcPort?: pulumi.Input<string>;
+        tcpFlags?: pulumi.Input<string>;
+        tcpMss?: pulumi.Input<string>;
+        time?: pulumi.Input<string>;
+        tlsHost?: pulumi.Input<string>;
+        ttl?: pulumi.Input<string>;
+    }
+
 }
 
-export interface DatasourceFirewallMangle {
-    action?: string;
-    addressList?: string;
-    addressListTimeout?: string;
-    bytes?: number;
-    chain?: string;
-    comment?: string;
-    connectionBytes?: string;
-    connectionLimit?: string;
-    connectionMark?: string;
-    connectionNatState?: string;
-    connectionRate?: string;
-    connectionState?: string;
-    connectionType?: string;
-    content?: string;
-    disabled?: boolean;
-    dscp?: number;
-    dstAddress?: string;
-    dstAddressList?: string;
-    dstAddressType?: string;
-    dstLimit?: string;
-    dstPort?: string;
-    dynamic?: boolean;
-    /**
-     * Additional request filtering options.
-     */
-    filter?: {[key: string]: any};
-    fragment?: boolean;
-    hotspot?: string;
-    icmpOptions?: string;
-    /**
-     * The ID of this resource.
-     */
-    id?: string;
-    inBridgePort?: string;
-    inBridgePortList?: string;
-    inInterface?: string;
-    inInterfaceList?: string;
-    ingressPriority?: number;
-    invalid?: boolean;
-    ipsecPolicy?: string;
-    ipv4Options?: string;
-    jumpTarget?: string;
-    layer7Protocol?: string;
-    limit?: string;
-    log?: boolean;
-    logPrefix?: string;
-    newConnectionMark?: string;
-    newDscp?: number;
-    newMss?: number;
-    newPacketMark?: string;
-    newPriority?: string;
-    newRoutingMark?: string;
-    newTtl?: string;
-    nth?: string;
-    outBridgePort?: string;
-    outBridgePortList?: string;
-    outInterface?: string;
-    outInterfaceList?: string;
-    packetMark?: string;
-    packetSize?: string;
-    packets?: number;
-    passthrough?: boolean;
-    perConnectionClassifier?: string;
-    port?: string;
-    protocol?: string;
-    psd?: string;
-    random?: number;
-    routeDst?: string;
-    routingMark?: string;
-    srcAddress?: string;
-    srcAddressList?: string;
-    srcAddressType?: string;
-    srcMacAddress?: string;
-    srcPort?: string;
-    tcpFlags?: string;
-    tcpMss?: string;
-    time?: string;
-    tlsHost?: string;
-    ttl?: string;
+export namespace Ipv6 {
 }
 
-export interface DatasourceFirewallMangleArgs {
-    action?: pulumi.Input<string>;
-    addressList?: pulumi.Input<string>;
-    addressListTimeout?: pulumi.Input<string>;
-    bytes?: pulumi.Input<number>;
-    chain?: pulumi.Input<string>;
-    comment?: pulumi.Input<string>;
-    connectionBytes?: pulumi.Input<string>;
-    connectionLimit?: pulumi.Input<string>;
-    connectionMark?: pulumi.Input<string>;
-    connectionNatState?: pulumi.Input<string>;
-    connectionRate?: pulumi.Input<string>;
-    connectionState?: pulumi.Input<string>;
-    connectionType?: pulumi.Input<string>;
-    content?: pulumi.Input<string>;
-    disabled?: pulumi.Input<boolean>;
-    dscp?: pulumi.Input<number>;
-    dstAddress?: pulumi.Input<string>;
-    dstAddressList?: pulumi.Input<string>;
-    dstAddressType?: pulumi.Input<string>;
-    dstLimit?: pulumi.Input<string>;
-    dstPort?: pulumi.Input<string>;
-    dynamic?: pulumi.Input<boolean>;
-    /**
-     * Additional request filtering options.
-     */
-    filter?: pulumi.Input<{[key: string]: any}>;
-    fragment?: pulumi.Input<boolean>;
-    hotspot?: pulumi.Input<string>;
-    icmpOptions?: pulumi.Input<string>;
-    /**
-     * The ID of this resource.
-     */
-    id?: pulumi.Input<string>;
-    inBridgePort?: pulumi.Input<string>;
-    inBridgePortList?: pulumi.Input<string>;
-    inInterface?: pulumi.Input<string>;
-    inInterfaceList?: pulumi.Input<string>;
-    ingressPriority?: pulumi.Input<number>;
-    invalid?: pulumi.Input<boolean>;
-    ipsecPolicy?: pulumi.Input<string>;
-    ipv4Options?: pulumi.Input<string>;
-    jumpTarget?: pulumi.Input<string>;
-    layer7Protocol?: pulumi.Input<string>;
-    limit?: pulumi.Input<string>;
-    log?: pulumi.Input<boolean>;
-    logPrefix?: pulumi.Input<string>;
-    newConnectionMark?: pulumi.Input<string>;
-    newDscp?: pulumi.Input<number>;
-    newMss?: pulumi.Input<number>;
-    newPacketMark?: pulumi.Input<string>;
-    newPriority?: pulumi.Input<string>;
-    newRoutingMark?: pulumi.Input<string>;
-    newTtl?: pulumi.Input<string>;
-    nth?: pulumi.Input<string>;
-    outBridgePort?: pulumi.Input<string>;
-    outBridgePortList?: pulumi.Input<string>;
-    outInterface?: pulumi.Input<string>;
-    outInterfaceList?: pulumi.Input<string>;
-    packetMark?: pulumi.Input<string>;
-    packetSize?: pulumi.Input<string>;
-    packets?: pulumi.Input<number>;
-    passthrough?: pulumi.Input<boolean>;
-    perConnectionClassifier?: pulumi.Input<string>;
-    port?: pulumi.Input<string>;
-    protocol?: pulumi.Input<string>;
-    psd?: pulumi.Input<string>;
-    random?: pulumi.Input<number>;
-    routeDst?: pulumi.Input<string>;
-    routingMark?: pulumi.Input<string>;
-    srcAddress?: pulumi.Input<string>;
-    srcAddressList?: pulumi.Input<string>;
-    srcAddressType?: pulumi.Input<string>;
-    srcMacAddress?: pulumi.Input<string>;
-    srcPort?: pulumi.Input<string>;
-    tcpFlags?: pulumi.Input<string>;
-    tcpMss?: pulumi.Input<string>;
-    time?: pulumi.Input<string>;
-    tlsHost?: pulumi.Input<string>;
-    ttl?: pulumi.Input<string>;
-}
-
-export interface DatasourceFirewallNat {
-    action?: string;
-    addressList?: string;
-    addressListTimeout?: string;
-    bytes?: number;
-    chain?: string;
-    comment?: string;
-    connectionBytes?: string;
-    connectionLimit?: string;
-    connectionMark?: string;
-    connectionRate?: string;
-    connectionType?: string;
-    content?: string;
-    disabled?: boolean;
-    dscp?: number;
-    dstAddress?: string;
-    dstAddressList?: string;
-    dstAddressType?: string;
-    dstLimit?: string;
-    dstPort?: string;
-    dynamic?: boolean;
-    /**
-     * Additional request filtering options.
-     */
-    filter?: {[key: string]: any};
-    fragment?: boolean;
-    hotspot?: string;
-    icmpOptions?: string;
-    /**
-     * The ID of this resource.
-     */
-    id?: string;
-    inBridgePort?: string;
-    inBridgePortList?: string;
-    inInterface?: string;
-    inInterfaceList?: string;
-    ingressPriority?: number;
-    invalid?: boolean;
-    ipsecPolicy?: string;
-    ipv4Options?: string;
-    jumpTarget?: string;
-    layer7Protocol?: string;
-    limit?: string;
-    log?: boolean;
-    logPrefix?: string;
-    nth?: string;
-    outBridgePort?: string;
-    outBridgePortList?: string;
-    outInterface?: string;
-    outInterfaceList?: string;
-    packetMark?: string;
-    packetSize?: string;
-    packets?: number;
-    perConnectionClassifier?: string;
-    port?: string;
-    priority?: number;
-    protocol?: string;
-    psd?: string;
-    random?: number;
-    routingMark?: string;
-    sameNotByDst?: boolean;
-    srcAddress?: string;
-    srcAddressList?: string;
-    srcAddressType?: string;
-    srcMacAddress?: string;
-    srcPort?: string;
-    tcpMss?: string;
-    time?: string;
-    toAddresses?: string;
-    toPorts?: string;
-    ttl?: string;
-}
-
-export interface DatasourceFirewallNatArgs {
-    action?: pulumi.Input<string>;
-    addressList?: pulumi.Input<string>;
-    addressListTimeout?: pulumi.Input<string>;
-    bytes?: pulumi.Input<number>;
-    chain?: pulumi.Input<string>;
-    comment?: pulumi.Input<string>;
-    connectionBytes?: pulumi.Input<string>;
-    connectionLimit?: pulumi.Input<string>;
-    connectionMark?: pulumi.Input<string>;
-    connectionRate?: pulumi.Input<string>;
-    connectionType?: pulumi.Input<string>;
-    content?: pulumi.Input<string>;
-    disabled?: pulumi.Input<boolean>;
-    dscp?: pulumi.Input<number>;
-    dstAddress?: pulumi.Input<string>;
-    dstAddressList?: pulumi.Input<string>;
-    dstAddressType?: pulumi.Input<string>;
-    dstLimit?: pulumi.Input<string>;
-    dstPort?: pulumi.Input<string>;
-    dynamic?: pulumi.Input<boolean>;
-    /**
-     * Additional request filtering options.
-     */
-    filter?: pulumi.Input<{[key: string]: any}>;
-    fragment?: pulumi.Input<boolean>;
-    hotspot?: pulumi.Input<string>;
-    icmpOptions?: pulumi.Input<string>;
-    /**
-     * The ID of this resource.
-     */
-    id?: pulumi.Input<string>;
-    inBridgePort?: pulumi.Input<string>;
-    inBridgePortList?: pulumi.Input<string>;
-    inInterface?: pulumi.Input<string>;
-    inInterfaceList?: pulumi.Input<string>;
-    ingressPriority?: pulumi.Input<number>;
-    invalid?: pulumi.Input<boolean>;
-    ipsecPolicy?: pulumi.Input<string>;
-    ipv4Options?: pulumi.Input<string>;
-    jumpTarget?: pulumi.Input<string>;
-    layer7Protocol?: pulumi.Input<string>;
-    limit?: pulumi.Input<string>;
-    log?: pulumi.Input<boolean>;
-    logPrefix?: pulumi.Input<string>;
-    nth?: pulumi.Input<string>;
-    outBridgePort?: pulumi.Input<string>;
-    outBridgePortList?: pulumi.Input<string>;
-    outInterface?: pulumi.Input<string>;
-    outInterfaceList?: pulumi.Input<string>;
-    packetMark?: pulumi.Input<string>;
-    packetSize?: pulumi.Input<string>;
-    packets?: pulumi.Input<number>;
-    perConnectionClassifier?: pulumi.Input<string>;
-    port?: pulumi.Input<string>;
-    priority?: pulumi.Input<number>;
-    protocol?: pulumi.Input<string>;
-    psd?: pulumi.Input<string>;
-    random?: pulumi.Input<number>;
-    routingMark?: pulumi.Input<string>;
-    sameNotByDst?: pulumi.Input<boolean>;
-    srcAddress?: pulumi.Input<string>;
-    srcAddressList?: pulumi.Input<string>;
-    srcAddressType?: pulumi.Input<string>;
-    srcMacAddress?: pulumi.Input<string>;
-    srcPort?: pulumi.Input<string>;
-    tcpMss?: pulumi.Input<string>;
-    time?: pulumi.Input<string>;
-    toAddresses?: pulumi.Input<string>;
-    toPorts?: pulumi.Input<string>;
-    ttl?: pulumi.Input<string>;
-}
-
-export interface DatasourceFirewallRule {
-    action?: string;
-    addressListTimeout?: string;
-    bytes?: number;
-    chain?: string;
-    comment?: string;
-    connectionBytes?: string;
-    connectionLimit?: string;
-    connectionMark?: string;
-    connectionNatState?: string;
-    connectionRate?: string;
-    connectionState?: string;
-    connectionType?: string;
-    content?: string;
-    disabled?: boolean;
-    dscp?: number;
-    dstAddress?: string;
-    dstAddressList?: string;
-    dstAddressType?: string;
-    dstLimit?: string;
-    dstPort?: string;
-    dynamic?: boolean;
-    /**
-     * Additional request filtering options.
-     */
-    filter?: {[key: string]: any};
-    fragment?: boolean;
-    hotspot?: string;
-    hwOffload?: boolean;
-    icmpOptions?: string;
-    /**
-     * The ID of this resource.
-     */
-    id?: string;
-    inBridgePort?: string;
-    inBridgePortList?: string;
-    inInterface?: string;
-    inInterfaceList?: string;
-    ingressPriority?: number;
-    invalid?: boolean;
-    ipsecPolicy?: string;
-    ipv4Options?: string;
-    jumpTarget?: string;
-    layer7Protocol?: string;
-    limit?: string;
-    log?: boolean;
-    logPrefix?: string;
-    nth?: string;
-    outBridgePort?: string;
-    outBridgePortList?: string;
-    outInterface?: string;
-    outInterfaceList?: string;
-    packetMark?: string;
-    packetSize?: string;
-    packets?: number;
-    perConnectionClassifier?: string;
-    port?: string;
-    priority?: number;
-    protocol?: string;
-    psd?: string;
-    random?: number;
-    rejectWith?: string;
-    routingMark?: string;
-    routingTable?: string;
-    srcAddress?: string;
-    srcAddressList?: string;
-    srcAddressType?: string;
-    srcMacAddress?: string;
-    srcPort?: string;
-    tcpFlags?: string;
-    tcpMss?: string;
-    time?: string;
-    tlsHost?: string;
-    ttl?: string;
-}
-
-export interface DatasourceFirewallRuleArgs {
-    action?: pulumi.Input<string>;
-    addressListTimeout?: pulumi.Input<string>;
-    bytes?: pulumi.Input<number>;
-    chain?: pulumi.Input<string>;
-    comment?: pulumi.Input<string>;
-    connectionBytes?: pulumi.Input<string>;
-    connectionLimit?: pulumi.Input<string>;
-    connectionMark?: pulumi.Input<string>;
-    connectionNatState?: pulumi.Input<string>;
-    connectionRate?: pulumi.Input<string>;
-    connectionState?: pulumi.Input<string>;
-    connectionType?: pulumi.Input<string>;
-    content?: pulumi.Input<string>;
-    disabled?: pulumi.Input<boolean>;
-    dscp?: pulumi.Input<number>;
-    dstAddress?: pulumi.Input<string>;
-    dstAddressList?: pulumi.Input<string>;
-    dstAddressType?: pulumi.Input<string>;
-    dstLimit?: pulumi.Input<string>;
-    dstPort?: pulumi.Input<string>;
-    dynamic?: pulumi.Input<boolean>;
-    /**
-     * Additional request filtering options.
-     */
-    filter?: pulumi.Input<{[key: string]: any}>;
-    fragment?: pulumi.Input<boolean>;
-    hotspot?: pulumi.Input<string>;
-    hwOffload?: pulumi.Input<boolean>;
-    icmpOptions?: pulumi.Input<string>;
-    /**
-     * The ID of this resource.
-     */
-    id?: pulumi.Input<string>;
-    inBridgePort?: pulumi.Input<string>;
-    inBridgePortList?: pulumi.Input<string>;
-    inInterface?: pulumi.Input<string>;
-    inInterfaceList?: pulumi.Input<string>;
-    ingressPriority?: pulumi.Input<number>;
-    invalid?: pulumi.Input<boolean>;
-    ipsecPolicy?: pulumi.Input<string>;
-    ipv4Options?: pulumi.Input<string>;
-    jumpTarget?: pulumi.Input<string>;
-    layer7Protocol?: pulumi.Input<string>;
-    limit?: pulumi.Input<string>;
-    log?: pulumi.Input<boolean>;
-    logPrefix?: pulumi.Input<string>;
-    nth?: pulumi.Input<string>;
-    outBridgePort?: pulumi.Input<string>;
-    outBridgePortList?: pulumi.Input<string>;
-    outInterface?: pulumi.Input<string>;
-    outInterfaceList?: pulumi.Input<string>;
-    packetMark?: pulumi.Input<string>;
-    packetSize?: pulumi.Input<string>;
-    packets?: pulumi.Input<number>;
-    perConnectionClassifier?: pulumi.Input<string>;
-    port?: pulumi.Input<string>;
-    priority?: pulumi.Input<number>;
-    protocol?: pulumi.Input<string>;
-    psd?: pulumi.Input<string>;
-    random?: pulumi.Input<number>;
-    rejectWith?: pulumi.Input<string>;
-    routingMark?: pulumi.Input<string>;
-    routingTable?: pulumi.Input<string>;
-    srcAddress?: pulumi.Input<string>;
-    srcAddressList?: pulumi.Input<string>;
-    srcAddressType?: pulumi.Input<string>;
-    srcMacAddress?: pulumi.Input<string>;
-    srcPort?: pulumi.Input<string>;
-    tcpFlags?: pulumi.Input<string>;
-    tcpMss?: pulumi.Input<string>;
-    time?: pulumi.Input<string>;
-    tlsHost?: pulumi.Input<string>;
-    ttl?: pulumi.Input<string>;
-}
-
-export interface ResourceSystemCertificateSign {
-    /**
-     * Which CA to use if signing issued certificates.
-     */
-    ca?: pulumi.Input<string>;
-    /**
-     * CRL host if issuing CA certificate.
-     */
-    caCrlHost?: pulumi.Input<string>;
+export namespace System {
+    export interface CertificateSign {
+        /**
+         * Which CA to use if signing issued certificates.
+         */
+        ca?: pulumi.Input<string>;
+        /**
+         * CRL host if issuing CA certificate.
+         */
+        caCrlHost?: pulumi.Input<string>;
+    }
 }
