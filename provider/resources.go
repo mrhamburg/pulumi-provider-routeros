@@ -19,13 +19,13 @@ import (
 	"path/filepath"
 	"unicode"
 
+	"github.com/mrhamburg/pulumi-provider-routeros/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
-	"github.com/mrhamburg/pulumi-provider-routeros/provider/pkg/version"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/terraform-routeros/terraform-provider-routeros/routeros"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/terraform-routeros/terraform-provider-routeros/routeros"
 )
 
 // all of the token components used below.
@@ -34,15 +34,15 @@ const (
 	// registries for nodejs and python:
 	mainPkg = "routeros"
 	// modules:
-	mainMod = "index" // the routeros module
-	rosInterface    = "Interface"
-	rosCapsMan 		= "CapsMan"
-	rosIp 			= "Ip"
-	rosIpv6			= "Ipv6"
-	rosOpenVpn		= "OpenVpn"
-	rosPpp 			= "Ppp"
-	rosRouting 		= "Routing"
-	rosSystem 		= "System"
+	mainMod      = "index" // the routeros module
+	rosInterface = "Iface"
+	rosCapsMan   = "CapsMan"
+	rosIp        = "Ip"
+	rosIpv6      = "Ipv6"
+	rosOpenVpn   = "OpenVpn"
+	rosPpp       = "Ppp"
+	rosRouting   = "Routing"
+	rosSystem    = "System"
 )
 
 // boolRef returns a reference to the bool argument.
@@ -152,7 +152,7 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		PreConfigureCallback: preConfigureCallback,
-		Resources:            map[string]*tfbridge.ResourceInfo{
+		Resources: map[string]*tfbridge.ResourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi type. Two examples
 			// are below - the single line form is the common case. The multi-line form is
 			// needed only if you wish to override types or other default options.
@@ -165,51 +165,71 @@ func Provider() tfbridge.ProviderInfo {
 			// 		"tags": {Type: tfbridge.MakeType(mainPkg, "Tags")},
 			// 	},
 			// },
-			"routeros_capsman_aaa": {Tok: routerOsResource(rosCapsMan, "Aaa")},
-			"routeros_capsman_channel": {Tok: routerOsResource(rosCapsMan, "Channel")},
-			"routeros_capsman_configuration": {Tok: routerOsResource(rosCapsMan, "Configuration")},
-			"routeros_capsman_datapath": {Tok: routerOsResource(rosCapsMan, "Datapath")},
-			"routeros_capsman_manager": {Tok: routerOsResource(rosCapsMan, "Manager")},
+			"routeros_capsman_aaa":               {Tok: routerOsResource(rosCapsMan, "Aaa")},
+			"routeros_capsman_channel":           {Tok: routerOsResource(rosCapsMan, "Channel")},
+			"routeros_capsman_configuration":     {Tok: routerOsResource(rosCapsMan, "Configuration")},
+			"routeros_capsman_datapath":          {Tok: routerOsResource(rosCapsMan, "Datapath")},
+			"routeros_capsman_manager":           {Tok: routerOsResource(rosCapsMan, "Manager")},
 			"routeros_capsman_manager_interface": {Tok: routerOsResource(rosCapsMan, "ManagerInterface")},
-			"routeros_capsman_provisioning": {Tok: routerOsResource(rosCapsMan, "Provisioning")},
-			"routeros_capsman_rates": {Tok: routerOsResource(rosCapsMan, "Rates")},
-			"routeros_capsman_security": {Tok: routerOsResource(rosCapsMan, "Security")},
-			"routeros_interface_bridge": {Tok: routerOsResource(rosInterface, "Bridge")},
-			"routeros_interface_bridge_port": {Tok: routerOsResource(rosInterface, "BridgePort")},
-			"routeros_interface_bridge_vlan": {Tok: routerOsResource(rosInterface, "BridgeVlan")},
-			"routeros_interface_gre": {Tok: routerOsResource(rosInterface, "Gre")},
-			"routeros_interface_list": {Tok: routerOsResource(rosInterface, "List")},
-			"routeros_interface_list_member": {Tok: routerOsResource(rosInterface, "ListMember")},
-			"routeros_interface_ovpn_server": {Tok: routerOsResource(rosInterface, "OpenVpnServer")},
-			"routeros_interface_vlan": {Tok: routerOsResource(rosInterface, "Vlan")},
-			"routeros_interface_vrrp": {Tok: routerOsResource(rosInterface, "Vrrp")},
-			"routeros_interface_wireguard": {Tok: routerOsResource(rosInterface, "Wireguard")},
-			"routeros_interface_wireguard_peer": {Tok: routerOsResource(rosInterface, "WireguardPeer")},
-			"routeros_ip_address": {Tok: routerOsResource(rosIp, "Address")},
-			"routeros_ip_dhcp_client": {Tok: routerOsResource(rosIp, "DhcpClient")},
-			"routeros_ip_dhcp_server": {Tok: routerOsResource(rosIp, "DhcpServer")},
-			"routeros_ip_dhcp_server_lease": {Tok: routerOsResource(rosIp, "DhcpServerLease")},
-			"routeros_ip_dhcp_server_network": {Tok: routerOsResource(rosIp, "DhcpServerNetwork")},
-			"routeros_ip_dns": {Tok: routerOsResource(rosIp, "Dns")},
-			"routeros_ip_dns_record": {Tok: routerOsResource(rosIp, "DnsRecord")},
-			"routeros_ip_firewall_addr_list": {Tok: routerOsResource(rosIp, "FirewallAddrList")},
-			"routeros_ip_firewall_filter": {Tok: routerOsResource(rosIp, "FirewallFilter")},
-			"routeros_ip_firewall_mangle": {Tok: routerOsResource(rosIp, "FirewallMangle")},
-			"routeros_ip_firewall_nat": {Tok: routerOsResource(rosIp, "FirewallNat")},
-			"routeros_ip_pool": {Tok: routerOsResource(rosIp, "Pool")},
-			"routeros_ip_route": {Tok: routerOsResource(rosIp, "Route")},
-			"routeros_ip_service": {Tok: routerOsResource(rosIp, "Service")},
-			"routeros_ipv6_address": {Tok: routerOsResource(rosIpv6, "Address")},
-			"routeros_ipv6_firewall_filter": {Tok: routerOsResource(rosIpv6, "FirewallFilter")},
-			"routeros_ipv6_route": {Tok: routerOsResource(rosIpv6, "Route")},
-			"routeros_ovpn_server": {Tok: routerOsResource(rosOpenVpn, "Server")},
-			"routeros_ppp_profile": {Tok: routerOsResource(rosPpp, "Profile")},
-			"routeros_ppp_secret": {Tok: routerOsResource(rosPpp, "Secret")},
-			"routeros_routing_table": {Tok: routerOsResource(rosRouting, "Routing")},
-			"routeros_system_certificate": {Tok: routerOsResource(rosSystem, "Certificate")},
-			"routeros_system_identity": {Tok: routerOsResource(rosSystem, "Identity")},
-			"routeros_system_scheduler": {Tok: routerOsResource(rosSystem, "Scheduler")},
-			"routeros_system_user": {Tok: routerOsResource(rosSystem, "User")},
+			"routeros_capsman_provisioning":      {Tok: routerOsResource(rosCapsMan, "Provisioning")},
+			"routeros_capsman_rates":             {Tok: routerOsResource(rosCapsMan, "Rates")},
+			"routeros_capsman_security":          {Tok: routerOsResource(rosCapsMan, "Security")},
+			"routeros_bridge":                    {Tok: routerOsResource(rosInterface, "Bridge")},
+			"routeros_bridge_port":               {Tok: routerOsResource(rosInterface, "BridgePort")},
+			"routeros_bridge_vlan":               {Tok: routerOsResource(rosInterface, "BridgeVlan")},
+			"routeros_interface_bridge":          {Tok: routerOsResource(rosInterface, "InterfaceBridge")},
+			"routeros_interface_bridge_port":     {Tok: routerOsResource(rosInterface, "InterfaceBridgePort")},
+			"routeros_interface_bridge_vlan":     {Tok: routerOsResource(rosInterface, "InterfaceBridgeVlan")},
+			"routeros_interface_gre":             {Tok: routerOsResource(rosInterface, "InterfaceGre")},
+			"routeros_gre":                       {Tok: routerOsResource(rosInterface, "Gre")},
+			"routeros_interface_list":            {Tok: routerOsResource(rosInterface, "List")},
+			"routeros_interface_list_member":     {Tok: routerOsResource(rosInterface, "ListMember")},
+			"routeros_interface_ovpn_server":     {Tok: routerOsResource(rosInterface, "OpenVpnServer")},
+			"routeros_vlan":                      {Tok: routerOsResource(rosInterface, "Vlan")},
+			"routeros_interface_vlan":            {Tok: routerOsResource(rosInterface, "InterfaceVlan")},
+			"routeros_vrrp":                      {Tok: routerOsResource(rosInterface, "Vrrp")},
+			"routeros_interface_vrrp":            {Tok: routerOsResource(rosInterface, "InterfaceVrrp")},
+			"routeros_wireguard":                 {Tok: routerOsResource(rosInterface, "Wireguard")},
+			"routeros_interface_wireguard":       {Tok: routerOsResource(rosInterface, "InterfaceWireguard")},
+			"routeros_wireguard_peer":            {Tok: routerOsResource(rosInterface, "WireguardPeer")},
+			"routeros_interface_wireguard_peer":  {Tok: routerOsResource(rosInterface, "InterfaceWireguardPeer")},
+			"routeros_ip_address":                {Tok: routerOsResource(rosIp, "V4Address")},
+			"routeros_dhcp_client":               {Tok: routerOsResource(rosIp, "DhcpClient")},
+			"routeros_dhcp_server":               {Tok: routerOsResource(rosIp, "DhcpServer")},
+			"routeros_dhcp_server_lease":         {Tok: routerOsResource(rosIp, "DhcpServerLease")},
+			"routeros_dhcp_server_network":       {Tok: routerOsResource(rosIp, "DhcpServerNetwork")},
+			"routeros_ip_dhcp_client":            {Tok: routerOsResource(rosIp, "DhcpIpClient")},
+			"routeros_ip_dhcp_server":            {Tok: routerOsResource(rosIp, "DhcpIpServer")},
+			"routeros_ip_dhcp_server_lease":      {Tok: routerOsResource(rosIp, "DhcpIpServerLease")},
+			"routeros_ip_dhcp_server_network":    {Tok: routerOsResource(rosIp, "DhcpIpServerNetwork")},
+			"routeros_dns":                       {Tok: routerOsResource(rosIp, "Dns")},
+			"routeros_dns_record":                {Tok: routerOsResource(rosIp, "DnsRecord")},
+			"routeros_firewall_addr_list":        {Tok: routerOsResource(rosIp, "FirewallAddrList")},
+			"routeros_firewall_filter":           {Tok: routerOsResource(rosIp, "FirewallFilter")},
+			"routeros_firewall_mangle":           {Tok: routerOsResource(rosIp, "FirewallMangle")},
+			"routeros_firewall_nat":              {Tok: routerOsResource(rosIp, "FirewallNat")},
+			"routeros_ip_dns":                    {Tok: routerOsResource(rosIp, "IpDns")},
+			"routeros_ip_dns_record":             {Tok: routerOsResource(rosIp, "IpDnsRecord")},
+			"routeros_ip_firewall_addr_list":     {Tok: routerOsResource(rosIp, "IpFirewallAddrList")},
+			"routeros_ip_firewall_filter":        {Tok: routerOsResource(rosIp, "IpFirewallFilter")},
+			"routeros_ip_firewall_mangle":        {Tok: routerOsResource(rosIp, "IpFirewallMangle")},
+			"routeros_ip_firewall_nat":           {Tok: routerOsResource(rosIp, "IpFirewallNat")},
+			"routeros_ip_pool":                   {Tok: routerOsResource(rosIp, "Pool")},
+			"routeros_ip_route":                  {Tok: routerOsResource(rosIp, "Route")},
+			"routeros_ip_service":                {Tok: routerOsResource(rosIp, "Service")},
+			"routeros_ipv6_address":              {Tok: routerOsResource(rosIpv6, "V6Address")},
+			"routeros_ipv6_firewall_filter":      {Tok: routerOsResource(rosIpv6, "FirewallFilter")},
+			"routeros_ipv6_route":                {Tok: routerOsResource(rosIpv6, "Route")},
+			"routeros_ovpn_server":               {Tok: routerOsResource(rosOpenVpn, "Server")},
+			"routeros_ppp_profile":               {Tok: routerOsResource(rosPpp, "Profile")},
+			"routeros_ppp_secret":                {Tok: routerOsResource(rosPpp, "Secret")},
+			"routeros_routing_table":             {Tok: routerOsResource(rosRouting, "Routing")},
+			"routeros_system_certificate":        {Tok: routerOsResource(rosSystem, "Certificate")},
+			"routeros_identity":                  {Tok: routerOsResource(rosSystem, "Identity")},
+			"routeros_system_identity":           {Tok: routerOsResource(rosSystem, "SystemIdentity")},
+			"routeros_system_scheduler":          {Tok: routerOsResource(rosSystem, "SystemScheduler")},
+			"routeros_scheduler":                 {Tok: routerOsResource(rosSystem, "Scheduler")},
+			"routeros_system_user":               {Tok: routerOsResource(rosSystem, "User")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"routeros_firewall": {
